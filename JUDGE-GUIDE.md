@@ -4,7 +4,7 @@
 
 [Install Your Move for Jira](https://developer.atlassian.com/console/install/9c641745-3a47-4ff3-b434-1f3a00e6f1a2?signature=AYABeLufAlPB7JlYyD0Opr0dfvwAAAADAAdhd3Mta21zAEthcm46YXdzOmttczp1cy13ZXN0LTI6NzA5NTg3ODM1MjQzOmtleS83MDVlZDY3MC1mNTdjLTQxYjUtOWY5Yi1lM2YyZGNjMTQ2ZTcAuAECAQB4CxqLTo9l4lqXuFjNim1xJM%2Bp%2F3TVP9xHS2BrU5DRRucBo6fG09DTRBAslqWkbgqO1gAAAH4wfAYJKoZIhvcNAQcGoG8wbQIBADBoBgkqhkiG9w0BBwEwHgYJYIZIAWUDBAEuMBEEDKQauWFKVdoQdm0pyAIBEIA7pj4FDCfB%2FhgHAvV0FOrYOHjGgx8Se%2BQdVjfbIiSdhcG44QgKvCeu5tR7LpcyfPsmqpGQbPX%2FQz%2B7HcgAB2F3cy1rbXMAS2Fybjphd3M6a21zOmV1LXdlc3QtMTo3MDk1ODc4MzUyNDM6a2V5LzQ2MzBjZTZiLTAwYzMtNGRlMi04NzdiLTYyN2UyMDYwZTVjYwC4AQICAHi9bVMAkme4qVQX1fQHo6ePw3H40A7cGfz7yrmSfBWMXgE3NJziQFFIJiL8EscJfgRmAAAAfjB8BgkqhkiG9w0BBwagbzBtAgEAMGgGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQMbAFKnpk4gN63PmvOAgEQgDsUUAUWX8LaOh8npj7WOMIkHa02iYBx5mBHjc4aZ4EqiafeBvj52Wto%2B35MHKh5OKDI%2FfKrr09%2BRTX6igAHYXdzLWttcwBLYXJuOmF3czprbXM6dXMtZWFzdC0xOjcwOTU4NzgzNTI0MzprZXkvNmMxMjBiYTAtNGNkNS00OTg1LWI4MmUtNDBhMDQ5NTJjYzU3ALgBAgIAeDYASx0XCjkny4iLV6vz%2BKtEGSGT6kdt0QRpkn6D%2FlVEAXNkRRYYoobBQQVo9XlJt7gAAAB%2BMHwGCSqGSIb3DQEHBqBvMG0CAQAwaAYJKoZIhvcNAQcBMB4GCWCGSAFlAwQBLjARBAxsPx3LzYpz%2FdoOTTgCARCAO6mdFaIw2HIg4s7bdUp1l8eFsYy%2BZWEqVRBypJhWUYVxJDSBHP9Kl17lLg%2BCpWCWBfJ5Cbuons9RSaI9AgAAAAAMAAAQAAAAAAAAAAAAAAAAADJb%2BvMnhF511UTdxrlXc1f%2F%2F%2F%2F%2FAAAAAQAAAAAAAAAAAAAAAQAAADJ6R3TUZE2ln0Wbo3mkzXwtH0wK9%2B2Xux6q7K9LafGP18XbUeoYmDNVhAgBb0uB7mneIeNVsbL4hA5vjQq5X9iOhLw%3D&product=jira)
 
-Production **2.0.0** was deployed and installed on November 12, 2026. The production My court page loaded successfully on the existing test site. A separate clean-site installation has not been verified. Development and production store separate app data.
+Production **2.3.0** includes the optimized-bundle error-rendering fix. The public installation link successfully installed the app on a newly created Jira site on November 12, 2026. My court loaded with an empty, separate data store; adding the global Ball field and its layout enabled native initialization. Development, production, and distinct sites store separate app data.
 
 [Watch the 2:35 English demo](https://youtu.be/cnNutuTzSNE).
 
@@ -18,10 +18,13 @@ Production **2.0.0** was deployed and installed on November 12, 2026. The produc
 ## Install and configure
 
 1. Open the release's installation link, choose the Jira site and install Your Move after reviewing its permissions.
-2. Open an issue and choose **View app actions → Your Move**. If Jira offers a consent prompt, authorize the app with the current account.
-3. In the project's issue layout, add the custom **Ball** field to Details, preferably beside Assignee. Jira configuration labels can differ between project types. If an older test installation is also present, use the field belonging to this release.
-4. Open **Apps → Your Move** to access My court, Inbox and Notification settings.
-5. Repeat authorization with the second tester. Both testers must be eligible for assignment on the issue.
+2. **Configure Ball before creating actions.** On a team-managed project, open **Space settings → Fields → Add field**. Select the app-provided **Ball** field, then click **Add 1 field**. Do not create a generic people field with the same name.
+3. Open **Work types → Feature** (or the work type you use). Click Ball in the available Fields sidebar. Use **More actions for Ball → Context fields** to put it near Assignee, then **Save changes**. Repeat for other work types as needed. Labels differ for company-managed projects; their administrator must add the app's Ball field to the appropriate field configuration/screens.
+4. Open an issue and choose **View app actions → Your Move**. If Jira offers a consent prompt, authorize the app with the current account. When development is also installed, choose the production panel and field; DEV data is separate.
+5. Open **Apps → Your Move** to access My court, Inbox and Notification settings.
+6. Repeat authorization with the second tester. Both testers must be eligible for assignment on the issue.
+
+If an action was created before field setup, it remains saved. Set the native Ball field to the existing action's holder after setup; check the retained action in the panel. Never uninstall an existing installation just to repair field layout.
 
 The Ball field supports several holders. Its native people picker is edited inside the issue; Jira board cards do not offer an additional inline app-owned picker.
 
@@ -53,7 +56,7 @@ Background synchronization is asynchronous. My court Inbox checks on focus, when
 ## Known limits
 
 - Local demo users are simulated and do not prove Jira delivery.
-- The current verified real-account evidence covers native-field handoff, recipient Inbox, opening the exact action, pickup and retained history. Distinct-account automatic email, real access revocation and simultaneous native/app edits still require verification.
+- The current verified real-account evidence covers native-field handoff, recipient Inbox, opening the exact action, pickup and retained history. Automatic recipient email was received by the second real account on production. A role restriction removed the issue from that account’s My court and Inbox, and restoring access restored the notice. A real stale handoff was rejected with a recoverable conflict message after another account’s native edit. A near-overlap case converged, but this is not a cross-system atomicity guarantee.
 - Ball choices are limited to active users eligible for Jira assignment. Lists are paginated; counts describe loaded accessible data.
 - An action retains at most 200 ordinary history events. A final trusted Done closure can append one additional terminal event.
 - No AI, Rovo agent, MCP server, Teamwork Graph integration, automatic reminders or realtime push is claimed.
